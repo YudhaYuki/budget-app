@@ -49,13 +49,26 @@ var UIController = (function() {
 
 var controller = (function(budgetCtrl, UICtrl) {
 
-    var DOM = UICtrl.getDOMstrings(); // Define new varibale to get DOMstrings,  So by doing this, inside this DOM variable, we also have the DOMstrings that we have up there (DOMstrings), because we expose them to the public by using getDOMstrings method
+    var setupEventListener = function() {
+
+        var DOM = UICtrl.getDOMstrings(); // Define new varibale to get DOMstrings,  So by doing this, inside this DOM variable, we also have the DOMstrings that we have up there (DOMstrings), because we expose them to the public by using getDOMstrings method        
+
+        // Passing one controller/module to the other
+        document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem); // because now it calls DOM no longer DOMstrings
+        
+        // Key press when we hit enter/return key
+        document.addEventListener('keypress',  function(event) {
+            if (event.keyCode === 13 || event.which === 13) {
+                ctrlAddItem();
+            }
+        });
+    };
+
 
     var ctrlAddItem = function() {
 
         // 1. Get the field input data
         var input = UICtrl.getinput();
-        console.log(input);
 
         // 2. Add the item to the budget controller
 
@@ -65,20 +78,21 @@ var controller = (function(budgetCtrl, UICtrl) {
 
         // 5. Display the budget on the UI
 
-    }
+    };
 
-    document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem); // because now it calls DOM no longer DOMstrings
- 
-    // Key press when we hit enter/return key
-    document.addEventListener('keypress',  function(event) {
-
-        if (event.keyCode === 13 || event.which === 13) {
-
-            ctrlAddItem();
-
+    // public initializing function
+    // This means our eventListeners are only going to be setup as soon as we call the init function
+    // It is placed down there and outside the controller 
+    // We create init function because we want to have a place, where we can put all the code that we want to be executed, at the beginning when our application starts
+    return {
+        init: function() {
+            console.log('Application has started.');
+            setupEventListener();
         }
-    });
+    };
 
 })(budgetController, UIController);
 
-// Passing one controller/module to the other
+// WIthout this, nothing is ever going to happen, because there will be no event listeners
+controller.init();
+
