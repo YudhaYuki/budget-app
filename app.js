@@ -150,6 +150,11 @@ var UIController = (function() {
             // This will trick the slice method into thinking that we give it an array, so it will return an array
             // This means now we can loop over this array, and clear all the fields that were selected, which is only two in this case
             fieldsArr = Array.prototype.slice.call(fields);
+
+            // We want simply clear all these fields
+            fieldsArr.forEach(function(current, index, array) {
+                current.value = "";
+            });
         },
 
         // Basically, we are now exposing the DOMstrings object into the public
