@@ -1,10 +1,56 @@
-// BUDGET CONTROLLER
+// BUDGET CONTROLLER, this will keep tracks all incomes and expenses and also the budget itslef and later prcentages
 var budgetController = (function() {
+
+    // functions constructor, we choose to create object here through the expense function constructor, because there will be a lot of expenses, therefore this is the best way to do that
+    var Expense = function(id, description, value) {
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    }
+
+    var Income = function(id, description, value) {
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    }
+
     
-    // Some code
+    // Storing the income or expenses
+    /*
+    var allExpenses = [];
+    var allIcomes = [];
+    var totalExpenses = 0;
+    .... do the same thing for income and the budgets and so on, then this will not be the best solution
+    Each time somehow that we can aggregate a lot of information into one nice data structure, we should definitely do that.
+    it's better to have one data structures where all of our data goes instead of having a lot of data variables flowing around
+    SO, BETTER solution is the bellowing down here !!!!
+
+    like this 
+    var data = {
+        allExpenses: [],
+        allIncomes: [],
+    }
+
+    But we can still even do it better, because both of these are arrays which store all instances
+    of either expenses or incomes.
+    So anohter better solution is down here !!!!
+
+    Allitems is also an object
+
+    */
+
+    var data = {
+        allItems: {
+            exp: [],
+            inc: []
+        },
+        totals: {
+            exp: 0,
+            inc: 0
+        }
+    }
 
 })();
-
 
 
 
@@ -86,7 +132,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     // We create init function because we want to have a place, where we can put all the code that we want to be executed, at the beginning when our application starts
     return {
         init: function() {
-            console.log('Application has started.');
+            // console.log('Application has started.');
             setupEventListener();
         }
     };
