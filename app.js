@@ -98,7 +98,9 @@ var UIController = (function() {
         inputType: '.add__type',
         inputDescription: '.add__description',
         inputValue: '.add__value',
-        inputBtn: '.add__btn'
+        inputBtn: '.add__btn',
+        incomeContainer: '.income__list',
+        expensesContainer: '.expenses__list'
     };
 
 
@@ -115,13 +117,17 @@ var UIController = (function() {
         // 
         addListItem: function(obj, type) {
 
-            var html, newHtml;
+            var html, newHtml, element;
 
             // Create HTML string with placeholder text
 
             if (type === 'inc') {
+                element = DOMstrings.incomeContainer;
+
                 html = '<div class="item clearfix" id="income-%id%"> <div class="item__description">%description%</div> <div class="right clearfix"> <div class="item__value">%value%</div> <div class="item__delete"> <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button> </div> </div> </div>'; 
-            } else if (type === 'exp') {
+            } else if (type === 'exp') { 
+                element = DOMstrings.expensesContainer;
+
                 html = '<div class="item clearfix" id="expense-%id%"> <div class="item__description">%description%</div> <div class="right clearfix"> <div class="item__value">%value%</div> <div class="item__percentage">21%</div> <div class="item__delete"> <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button> </div> </div> </div>';
             }
 
@@ -130,8 +136,10 @@ var UIController = (function() {
             newHtml = newHtml.replace('%description%', obj.description);
             newHtml = newHtml.replace('%value%', obj.value);
 
-            // Insert the HTML into the DOM
-            
+            // Insert the HTML into the DOM 
+            // the "beforeend keyword" makes it so that all of our HTML will be inserted as a child of these container (income__list OR expenses__list) but the last childin the list
+            document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+
         },
 
         // Basically, we are now exposing the DOMstrings object into the public
