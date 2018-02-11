@@ -12,13 +12,21 @@ var budgetController = (function() {
 // UI Controller
 var UIController = (function() {
 
+    // Object to store all of the strings, useful when we change the names later on
+    var DOMstrings = {
+        inputType: '.add__type',
+        inputDescription: '.add__description',
+        inputValue: '.add__value'
+    };
+
+
     return {
         getinput: function() {
             // Method for returning all of the three inputs that we had in the user interface
             return {
-                type : document.querySelector('.add__type').value, // Will be either inc or exp
-                description : document.querySelector('.add__description').value,
-                value : document.querySelector('.add__value').value
+                type : document.querySelector(DOMstrings.inputType).value, // Will be either inc or exp
+                description : document.querySelector(DOMstrings.inputDescription).value,
+                value : document.querySelector(DOMstrings.inputValue).value
             };
         }
     };
