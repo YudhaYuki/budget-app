@@ -142,6 +142,16 @@ var UIController = (function() {
 
         },
 
+        clearFields: function() {
+            var fields, fieldsArr;
+
+            fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue);
+
+            // This will trick the slice method into thinking that we give it an array, so it will return an array
+            // This means now we can loop over this array, and clear all the fields that were selected, which is only two in this case
+            fieldsArr = Array.prototype.slice.call(fields);
+        },
+
         // Basically, we are now exposing the DOMstrings object into the public
         getDOMstrings: function() {
             return DOMstrings;
