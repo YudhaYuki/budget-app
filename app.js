@@ -155,6 +155,9 @@ var UIController = (function() {
             fieldsArr.forEach(function(current, index, array) {
                 current.value = "";
             });
+
+            // It will select the first element, we simply need to use the focus method
+            fieldsArr[0].focus();
         },
 
         // Basically, we are now exposing the DOMstrings object into the public
