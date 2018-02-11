@@ -16,7 +16,8 @@ var UIController = (function() {
     var DOMstrings = {
         inputType: '.add__type',
         inputDescription: '.add__description',
-        inputValue: '.add__value'
+        inputValue: '.add__value',
+        inputBtn: '.add__btn'
     };
 
 
@@ -28,6 +29,11 @@ var UIController = (function() {
                 description : document.querySelector(DOMstrings.inputDescription).value,
                 value : document.querySelector(DOMstrings.inputValue).value
             };
+        },
+
+        // Basically, we are now exposing the DOMstrings object into the public
+        getDOMstrings: function() {
+            return DOMstrings;
         }
     };
 })();
@@ -42,6 +48,8 @@ var UIController = (function() {
 // Remember they are just function expressions
 
 var controller = (function(budgetCtrl, UICtrl) {
+
+    var DOM = UICtrl.getDOMstrings(); // Define new varibale to get DOMstrings,  So by doing this, inside this DOM variable, we also have the DOMstrings that we have up there (DOMstrings), because we expose them to the public by using getDOMstrings method
 
     var ctrlAddItem = function() {
 
@@ -59,8 +67,8 @@ var controller = (function(budgetCtrl, UICtrl) {
 
     }
 
-    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
-
+    document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem); // because now it calls DOM no longer DOMstrings
+ 
     // Key press when we hit enter/return key
     document.addEventListener('keypress',  function(event) {
 
@@ -72,3 +80,5 @@ var controller = (function(budgetCtrl, UICtrl) {
     });
 
 })(budgetController, UIController);
+
+// Passing one controller/module to the other
