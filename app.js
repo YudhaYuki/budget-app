@@ -6,13 +6,29 @@ var budgetController = (function() {
         this.id = id;
         this.description = description;
         this.value = value;
-    }
+        this.percentage = -1;
+    };
+
+
+    // Method to calculate the percentages (In the expenses lists)
+    Expense.prototype.calcPercentage = function(totalIncome) {
+        if (totalIncome > 0) {
+            this.percentage = Math.round((this.value / totalIncome) * 100);
+        } else {
+            this.percentage = -1;
+        }
+    };
+
+    // This method just retrieves the percentage from the object and then return it
+    Expense.prototype.getPercentage = function() {
+        return this.percentage;
+    };
 
     var Income = function(id, description, value) {
         this.id = id;
         this.description = description;
         this.value = value;
-    }
+    };
 
     // Private, we use it for either income or expenses
     var calculateTotal = function(type) {
@@ -135,8 +151,18 @@ var budgetController = (function() {
                 data.percentage = -1; // -1 means non existance
             }
 
+        },
 
-
+        calculatePercentages: function() {
+            /* 
+            a = 20
+            b = 10
+            c = 40
+            income = 100
+            a = 20/100 = 20%
+            b = 20/100 = 10%
+            c = 20/100 = 40%
+            */
         },
 
         // Again , we are creating a method only for returning something from our data structure of from our module so that we get used to this whole philosophy
