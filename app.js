@@ -61,7 +61,8 @@ var budgetController = (function() {
             inc: 0
         },
         // store the budget
-        budget :0
+        budget :0,
+        percentage: -1 // -1 is usually the value that we use to say that something in nonexistent, so if there are no budget values and no total expenses on incomes, then there cant be percentage
     }
 
 
@@ -102,8 +103,10 @@ var budgetController = (function() {
             // Calculate the budget: income - expenses, these retrieve the two values from our data structure, then calculate ones minus the other and then stores it again in the data structure in the budget property
             data.budget = data.totals.inc - data.totals.exp;
 
-
             // Calculate the percentage of income that we spent
+            data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
+
+
         },
 
         // create new method to test what we have done so far in the console
