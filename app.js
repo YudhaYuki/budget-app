@@ -105,7 +105,7 @@ var budgetController = (function() {
 
             // Yet another looping method called MAP
             // The different map and for each, it returns a brand new array
-            ids = data.allItem[type].map(function(current) {
+            ids = data.allItems[type].map(function(current) {
                 return current.id;
             });
 
@@ -264,8 +264,6 @@ var UIController = (function() {
 
 
 
-
-
 // GLOBAL APP CONTROLLER
 // Module can also receive argument
 // Remember they are just function expressions
@@ -349,6 +347,7 @@ var controller = (function(budgetCtrl, UICtrl) {
             ID = splitID[1];
 
             // 1. Delete the item from the data structure
+            budgetCtrl.deleteItem(type, ID);
 
             // 2. Delete the item from the UI
 
