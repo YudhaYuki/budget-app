@@ -219,17 +219,21 @@ var controller = (function(budgetCtrl, UICtrl) {
         // 1. Get the field input data
         var input = UICtrl.getinput();
 
-        // 2. Add the item to the budget controller
-        var newItem = budgetCtrl.addItem(input.type, input.description, input.value);
+        // We want data only when something input (Problem was when we enter or click the button, empty list are added into UI)
+        if (input.description !== "" && !isNaN(input.value) && input.value > 0) {
 
-        // 3. Add the item to the UI
-        UICtrl.addListItem(newItem, input.type);
-
-        // 4. Clear the fields
-        UICtrl.clearFields();
-
-        // 5. Calculate and update budget
-        updateBudget();
+            // 2. Add the item to the budget controller
+            var newItem = budgetCtrl.addItem(input.type, input.description, input.value);
+    
+            // 3. Add the item to the UI
+            UICtrl.addListItem(newItem, input.type);
+    
+            // 4. Clear the fields
+            UICtrl.clearFields();
+    
+            // 5. Calculate and update budget
+            updateBudget();
+        }
 
 
     };
