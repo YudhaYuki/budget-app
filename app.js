@@ -155,6 +155,7 @@ var budgetController = (function() {
 
         calculatePercentages: function() {
             /* 
+            EXAMPLE
             a = 20
             b = 10
             c = 40
@@ -163,6 +164,20 @@ var budgetController = (function() {
             b = 20/100 = 10%
             c = 20/100 = 40%
             */
+
+
+            // call the calculatePercentages method
+
+            data.allItems.exp.forEach(function(cur) {
+                current.calcPercentage();
+            });
+        },
+
+        getPercentages: function() {
+            var allPerc = data.allItems.exp.map(function(cur) {
+                return cur.getPercentage();
+            });
+            return allPerc;
         },
 
         // Again , we are creating a method only for returning something from our data structure of from our module so that we get used to this whole philosophy
