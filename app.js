@@ -309,7 +309,15 @@ var controller = (function(budgetCtrl, UICtrl) {
 
     // We need event here because we want to know what the target element is
     var ctrlDeleteItem = function(event) {
-        console.log(event.target);
+        var itemID;
+
+        // DOM traversing
+        // This is not the cleanest solution (Suing all of these parentNodes), because with this we are heavily relying on the DOM structure
+        // We basically hard-coded the DOM structure here. 
+        // console.log(event.target.parentNode.parentNode.parentNode.parentNode.id);
+        itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
+        
+
     };
 
     // public initializing function
