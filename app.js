@@ -94,6 +94,28 @@ var budgetController = (function() {
             return newItem;
         },
 
+
+        deleteItem: function(type, id) {
+            var ids, index;
+
+            // id = 6
+            // data.allItems[type][id];
+            // ids = [1 2 4 6 8]
+            // index = 3
+
+            // Yet another looping method called MAP
+            // The different map and for each, it returns a brand new array
+            ids = data.allItem[type].map(function(current) {
+                return current.id;
+            });
+
+            // Remember this index of method returns the index number of the element of the array that we input in the (id) downhere
+            index = ids.indexOf(id);
+
+
+        },
+
+
         calculateBudget: function() {
 
             // Calculate total incomes and expenses
@@ -324,7 +346,11 @@ var controller = (function(budgetCtrl, UICtrl) {
             type = splitID[0];
             ID = splitID[1];
 
-            // 1. 
+            // 1. Delete the item from the data structure
+
+            // 2. Delete the item from the UI
+
+            // 3. Update and show the new budget
         }
         
 
