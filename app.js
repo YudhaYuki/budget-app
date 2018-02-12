@@ -321,7 +321,7 @@ var UIController = (function() {
                     current.textContent = '---';                    
                 }
             });
-            
+
         },
 
         // Basically, we are now exposing the DOMstrings object into the public
@@ -384,7 +384,7 @@ var controller = (function(budgetCtrl, UICtrl) {
         var percentages = budgetCtrl.getPercentages();
 
         // 3. Update the UI with the new percentages
-        console.log(percentages);
+        UICtrl.displayPercentages(percentages);
 
     };
 
