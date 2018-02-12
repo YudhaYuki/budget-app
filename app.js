@@ -59,7 +59,9 @@ var budgetController = (function() {
         totals: {
             exp: 0,
             inc: 0
-        }
+        },
+        // store the budget
+        budget :0
     }
 
 
@@ -97,8 +99,9 @@ var budgetController = (function() {
             calculateTotal('exp');
             calculateTotal('inc');
 
+            // Calculate the budget: income - expenses, these retrieve the two values from our data structure, then calculate ones minus the other and then stores it again in the data structure in the budget property
+            data.budget = data.totals.inc - data.totals.exp;
 
-            // Calculate the budget: income - expenses
 
             // Calculate the percentage of income that we spent
         },
