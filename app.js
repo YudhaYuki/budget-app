@@ -107,10 +107,13 @@ var UIController = (function() {
     return {
         getinput: function() {
             // Method for returning all of the three inputs that we had in the user interface
+            // ParseFloat function, takes the string, that is returned and covert it to a number
             return {
                 type : document.querySelector(DOMstrings.inputType).value, // Will be either inc or exp
                 description : document.querySelector(DOMstrings.inputDescription).value,
-                value : document.querySelector(DOMstrings.inputValue).value
+                value : parseFloat(document.querySelector(DOMstrings.inputValue).value)
+
+                
             };
         },
 
@@ -193,6 +196,21 @@ var controller = (function(budgetCtrl, UICtrl) {
         });
     };
 
+    
+
+    var updateBudget = function() {
+
+        // 1. Calculate the budget
+
+
+        // 2. Return the budget
+
+
+        // 2. Display the budget on the UI
+
+    }
+
+
 
     var ctrlAddItem = function() {
 
@@ -210,9 +228,9 @@ var controller = (function(budgetCtrl, UICtrl) {
         // 4. Clear the fields
         UICtrl.clearFields();
 
-        // 5. Calculate the budget
+        // 5. Calculate and update budget
+        updateBudget();
 
-        // 6. Display the budget on the UI
 
     };
 
