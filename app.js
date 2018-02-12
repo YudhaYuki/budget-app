@@ -112,7 +112,9 @@ var budgetController = (function() {
             // Remember this index of method returns the index number of the element of the array that we input in the (id) downhere
             index = ids.indexOf(id);
 
-
+            if (index !== -1) {
+                data.allItems[type].splice(index, 1);
+            }
         },
 
 
