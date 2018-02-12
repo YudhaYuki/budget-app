@@ -310,7 +310,13 @@ var controller = (function(budgetCtrl, UICtrl) {
     // We create init function because we want to have a place, where we can put all the code that we want to be executed, at the beginning when our application starts
     return {
         init: function() {
-            // console.log('Application has started.');
+            console.log('Application has started.');
+            UICtrl.displayBudget({
+                budget: 0,
+                totalInc: 0,
+                totalExp: 0,
+                percentage: -1
+            });            
             setupEventListener();
         }
     };
