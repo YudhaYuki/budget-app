@@ -106,7 +106,17 @@ var budgetController = (function() {
             // Calculate the percentage of income that we spent
             data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
 
+        },
 
+        // Again , we are creating a method only for returning something from our data structure of from our module so that we get used to this whole philosophy
+        // of having functions that only retrieve data or set data.
+        getBudget: function() {
+            return {
+                budget: data.budget,
+                totalInc: data.totals.inc,
+                totalExp: data.totals.exp,
+                percentage: data.percentage
+            };
         },
 
         // create new method to test what we have done so far in the console
@@ -230,11 +240,11 @@ var controller = (function(budgetCtrl, UICtrl) {
 
     var updateBudget = function() {
 
-        // 1. Calculate the budget
-
+        // 1. Calculate the budget  
+        budgetCtrl.calculateBudget();
 
         // 2. Return the budget
-
+        var budget = budgetCtrl.getBudget();
 
         // 2. Display the budget on the UI
 
