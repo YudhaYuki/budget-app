@@ -295,6 +295,9 @@ var controller = (function(budgetCtrl, UICtrl) {
     };
 
     
+
+
+
     // This whole updateBudget function is called each time we enter a new item into the user interface WHERE IT COMES FROM ctrlAdditem function
     var updateBudget = function() {
 
@@ -306,7 +309,18 @@ var controller = (function(budgetCtrl, UICtrl) {
 
         // 3. Display the budget on the UI
         UICtrl.displayBudget(budget);
-    }
+    };
+
+
+    var updatePercentages = function () {
+
+        // 1. Calculate percentages
+
+        // 2. Read percentages from the budget controller
+
+        // 3. Update the UI with the new percentages
+
+    };
 
 
 
@@ -331,6 +345,10 @@ var controller = (function(budgetCtrl, UICtrl) {
     
             // 5. Calculate and update budget
             updateBudget();
+
+            // 6. Calculate and update percentages
+            updatePercentages();
+
         }
 
 
@@ -361,6 +379,9 @@ var controller = (function(budgetCtrl, UICtrl) {
 
             // 3. Update and show the new budget
             updateBudget();
+
+            // 4. Calculate and update percentages
+            updatePercentages();
             
         }
         
