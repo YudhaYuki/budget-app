@@ -14,6 +14,18 @@ var budgetController = (function() {
         this.value = value;
     }
 
+    // Private, we use it for either income or expenses
+    var calculateTotal = function(type) {
+        var sum = 0;
+        data.allItems[type].forEach(function(cur) {
+            // sum = sum + cur.value;
+            // Anotherway
+            sum +=  cur.value;
+        });
+
+        data.totals[type] = sum;
+
+    };
     
     // Storing the income or expenses
     /*
@@ -77,6 +89,18 @@ var budgetController = (function() {
 
             // Return the new element
             return newItem;
+        },
+
+        calculateBudget: function() {
+
+            // Calculate total incomes and expenses
+            calculateTotal('exp');
+            calculateTotal('inc');
+
+
+            // Calculate the budget: income - expenses
+
+            // Calculate the percentage of income that we spent
         },
 
         // create new method to test what we have done so far in the console
