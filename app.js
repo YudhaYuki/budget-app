@@ -237,7 +237,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     };
 
     
-
+    // This whole updateBudget function is called each time we enter a new item into the user interface WHERE IT COMES FROM ctrlAdditem function
     var updateBudget = function() {
 
         // 1. Calculate the budget  
@@ -246,7 +246,8 @@ var controller = (function(budgetCtrl, UICtrl) {
         // 2. Return the budget
         var budget = budgetCtrl.getBudget();
 
-        // 2. Display the budget on the UI
+        // 3. Display the budget on the UI
+        console.log(budget);
 
     }
 
