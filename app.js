@@ -151,7 +151,8 @@ var UIController = (function() {
         budgetLabel: '.budget__value',
         incomeLabel: '.budget__income--value',
         expensesLabel: '.budget__expenses--value',
-        percentageLabel: '.budget__expenses--percentage'
+        percentageLabel: '.budget__expenses--percentage',
+        container: '.container'
     };
 
 
@@ -260,6 +261,8 @@ var controller = (function(budgetCtrl, UICtrl) {
                 ctrlAddItem();
             }
         });
+
+        document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
     };
 
     
@@ -302,6 +305,11 @@ var controller = (function(budgetCtrl, UICtrl) {
         }
 
 
+    };
+
+    // We need event here because we want to know what the target element is
+    var ctrlDeleteItem = function(event) {
+        console.log(event.target);
     };
 
     // public initializing function
