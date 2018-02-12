@@ -219,7 +219,14 @@ var UIController = (function() {
             document.querySelector(DOMstrings.budgetLabel).textContent = obj.budget;
             document.querySelector(DOMstrings.incomeLabel).textContent = obj.totalInc;
             document.querySelector(DOMstrings.expensesLabel).textContent = obj.totalExp;
-            document.querySelector(DOMstrings.percentageLabel).textContent = obj.percentage;            
+            // document.querySelector(DOMstrings.percentageLabel).textContent = obj.percentage;  
+            
+            // Fixing bug, because we don't want to display -1 when we put expenses while before income, and adding% after number (In expenses column on top)
+            if (obj.percentage > 0) {
+                document.querySelector(DOMstrings.percentageLabel).textContent = obj.percentage + '%';  
+            } else {
+                document.querySelector(DOMstrings.percentageLabel).textContent = '---';                  
+            }
         },
 
         // Basically, we are now exposing the DOMstrings object into the public
