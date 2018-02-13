@@ -258,6 +258,13 @@ var UIController = (function() {
     };
 
 
+    var nodeListForEach = function(list, callback) {
+        for (var i = 0; i < list.length; i++) {
+            callback(list[i], i);
+        }
+    };
+
+
     return {
         getinput: function() {
             // Method for returning all of the three inputs that we had in the user interface
@@ -343,12 +350,6 @@ var UIController = (function() {
 
             var fields = document.querySelectorAll(DOMstrings.expensesPercLabel);
 
-            var nodeListForEach = function(list, callback) {
-                for (var i = 0; i < list.length; i++) {
-                    callback(list[i], i);
-                }
-            };
-
             nodeListForEach(fields, function(current, index) {
 
                 if(percentages[index] > 0) {
@@ -373,6 +374,21 @@ var UIController = (function() {
             year = now.getFullYear();
             document.querySelector(DOMstrings.dateLabel).textContent = months[month] + ' ' + year;
         
+        },
+
+        changeType: function() {
+
+            var fields = document.querySelectorAll(
+                DOMstrings.inputType + ',' +
+                DOMstrings.inputDescription + ',' +
+                DOMstrings.inputValue);
+
+            nodeListForEach(fields, function(cur) {
+                cur.classList.toggle('red-focus');
+            });
+
+            document.querySelector(DOMstrings.inputBtn).classList.toggle('red');
+
         },
 
         // Basically, we are now exposing the DOMstrings object into the public
@@ -406,6 +422,9 @@ var controller = (function(budgetCtrl, UICtrl) {
         });
 
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
+
+        // Change focus color BLUE when it is INC and RED when it is EXP
+        document.querySelector(DOM.inputType).addEventListener('change', UICtrl.changeType);
     };
 
     
