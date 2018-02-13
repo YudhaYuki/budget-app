@@ -222,6 +222,41 @@ var UIController = (function() {
     };
 
 
+    var formatNumber = function(num, type) {
+        
+        var numSplit, int, dec, type;
+
+        /*
+        + or - before number
+        exactly 2 decimal points
+        comma seperating the thousands
+
+        2310.4567 to be 2,310.46
+        2000 to be 2,000.00
+        */
+
+        num  = Math.abs(num);
+        num = num.toFixed(2);
+
+        // This will separate integer part and decimal part
+        numSplit = num.split('.');
+
+        int = numSplit[0];
+        if (int.length > 3) {
+            int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
+        }
+
+        dec = numSplit[1];
+
+        // type === 'exp' sign = '-' : sign = '+';
+        // return type + ' ' + int + dec;
+        // These above can be translated into the below line.....
+
+        return (type === 'exp' ? '-' :  '+') + ' ' + int + dec;
+    
+    };
+
+
     return {
         getinput: function() {
             // Method for returning all of the three inputs that we had in the user interface
@@ -230,8 +265,6 @@ var UIController = (function() {
                 type : document.querySelector(DOMstrings.inputType).value, // Will be either inc or exp
                 description : document.querySelector(DOMstrings.inputDescription).value,
                 value : parseFloat(document.querySelector(DOMstrings.inputValue).value)
-
-                
             };
         },
 
@@ -255,7 +288,7 @@ var UIController = (function() {
             // Replace the placeholder text with some actual data
             newHtml = html.replace('%id%', obj.id);
             newHtml = newHtml.replace('%description%', obj.description);
-            newHtml = newHtml.replace('%value%', obj.value);
+            newHtml = newHtml.replace('%value%', formatNumber(obj.value, type));
 
             // Insert the HTML into the DOM 
             // the "beforeend keyword" makes it so that all of our HTML will be inserted as a child of these container (income__list OR expenses__list) but the last childin the list
@@ -321,36 +354,6 @@ var UIController = (function() {
                     current.textContent = '---';                    
                 }
             });
-
-        },
-
-        formatNumber: function(num, type) {
-
-            var numSplit, int, dec;
-
-            /*
-            + or - before number
-            exactly 2 decimal points
-            comma seperating the thousands
-
-            2310.4567 to be 2,310.46
-            2000 to be 2,000.00
-            */
-
-            num  = Math.abs(num);
-            num = num.toFixed(2);
-
-            // This will separate integer part and decimal part
-            numSplit = num.split('.');
-
-            int = numSplit[0];
-            if (int.length > 3) {
-                int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
-            }
-
-
-
-            dec = numSplit[0];
 
         },
 
