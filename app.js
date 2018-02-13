@@ -252,7 +252,7 @@ var UIController = (function() {
         // return type + ' ' + int + dec;
         // These above can be translated into the below line.....
 
-        return (type === 'exp' ? '-' :  '+') + ' ' + int + dec;
+        return (type === 'exp' ? '-' :  '+') + ' ' + int + '.' + dec;
     
     };
 
