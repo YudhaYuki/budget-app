@@ -324,6 +324,36 @@ var UIController = (function() {
 
         },
 
+        formatNumber: function(num, type) {
+
+            var numSplit, int, dec;
+
+            /*
+            + or - before number
+            exactly 2 decimal points
+            comma seperating the thousands
+
+            2310.4567 to be 2,310.46
+            2000 to be 2,000.00
+            */
+
+            num  = Math.abs(num);
+            num = num.toFixed(2);
+
+            // This will separate integer part and decimal part
+            numSplit = num.split('.');
+
+            int = numSplit[0];
+            if (int.length > 3) {
+                int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
+            }
+
+
+
+            dec = numSplit[0];
+
+        },
+
         // Basically, we are now exposing the DOMstrings object into the public
         getDOMstrings: function() {
             return DOMstrings;
