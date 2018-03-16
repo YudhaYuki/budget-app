@@ -109,9 +109,12 @@ var UIController = (function() {
         },
 
         clearField: function() {
-            var fields;
-            
+            var fields, fieldArr;
+
+            // querySelectorAll returns list, similar to array, therfore we need to convert list to array
             fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue);
+
+            fieldArr = Array.prototype.slice.call(fields);
         },
 
         getDOMstrings: function() {
