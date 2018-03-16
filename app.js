@@ -50,6 +50,8 @@ var budgetController = (function() {
 
         },
 
+        // Useful to have this function public method dutring the development to expose some internal data
+        // budgetController.testing() to be called in console
         testing: function() {
             console.log(data);
         }
@@ -78,7 +80,7 @@ var UIController = (function() {
             return {
                 type : document.querySelector(DOMstrings.inputType).value, // Will be either inc or exp
                 description : document.querySelector(DOMstrings.inputDescription).value, 
-                value : document.querySelector(DOMstrings.inputValue).value
+                value : parseFloat(document.querySelector(DOMstrings.inputValue).value)
             };
         },
 
@@ -176,7 +178,7 @@ var controller = (function(budgetCtrl, UICtrl) {
 
         // 5. Calculate and update budget
         updateBudget();
-        
+
     };
 
     return {
