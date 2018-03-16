@@ -72,6 +72,15 @@ var budgetController = (function() {
             data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
         },
 
+        getBudget: function() {
+            return {
+                budget: data.budget, 
+                totalInc: data.totals.inc,
+                totalExp: data.totals.exp,
+                percentage: data.percentage
+            }
+        },
+
         // Useful to have this function public method dutring the development to expose some internal data
         // budgetController.testing() to be called in console
         testing: function() {
@@ -178,8 +187,10 @@ var controller = (function(budgetCtrl, UICtrl) {
         budgetCtrl.calculateBudget();
 
         // 2. return the budget
+        var budget = budgetCtrl.getBudget();
 
         // 3. Display the budget on the UI
+        console.log(budget);
 
     }
 
