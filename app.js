@@ -29,7 +29,9 @@ var budgetController = (function() {
         totals: {
             exp: 0,
             inc: 0
-        }
+        },
+        budget: 0,
+        percentage: -1
     }
 
     return {
@@ -64,12 +66,11 @@ var budgetController = (function() {
             calculateTotal('inc');
 
             // Calculate the budget: income - expenses
+            data.budget = data.totals.inc - data.totals.exp;
 
             // calculate the percentage of income that we spent
-
+            data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
         },
-
-
 
         // Useful to have this function public method dutring the development to expose some internal data
         // budgetController.testing() to be called in console
@@ -174,6 +175,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     var updateBudget = function() {
 
         // 1. Calculate the budget
+        budgetCtrl.calculateBudget();
 
         // 2. return the budget
 
