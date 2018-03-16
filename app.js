@@ -115,6 +115,10 @@ var UIController = (function() {
             fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue);
 
             fieldArr = Array.prototype.slice.call(fields);
+
+            fieldArr.forEach(function(current, index, array) {
+                current.value = "";
+            });
         },
 
         getDOMstrings: function() {
@@ -155,6 +159,9 @@ var controller = (function(budgetCtrl, UICtrl) {
 
         // 3. Add the item to the UI
         UICtrl.addListItem(newItem, input.type);
+
+        // 4. Clear the fields
+        UICtrl.clearField();
 
         // 4. Calculate the budget
 
